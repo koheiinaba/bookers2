@@ -1,0 +1,28 @@
+<p><%= flash[:notice] %></p>
+
+<%= render 'books/list', book: @book, user: @user %>
+
+    <div class="col-xs-9">
+      <h2>Book detail</h2>
+      <table class="table table-hover teble-inverse">
+
+       <tbody>
+        <tr>
+          <td><%= link_to user_path(@user) do %>
+          <%= attachment_image_tag @user, :profile_image, size:'50x50', format: 'jpeg', fallback: "no_image.jpg" %>
+          <% end %>
+          <%= link_to @user.name, user_path(@user) %></td>
+
+          <td><%= link_to @books.title, book_path %></td>
+          <td><%= @books.body %></td>
+
+          <% if @books.user_id == current_user.id %>
+          <td><%= link_to "Edit", edit_book_path %></td>
+          <td><%= link_to "Destroy", book_path, method: :delete %></td>
+          <% end %>
+        </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+</div>

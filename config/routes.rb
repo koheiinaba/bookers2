@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   	resource :favorites, only: [:create, :destroy]
   end
 
+  resources :relationships, only: [:create, :destroy]
+
   root 'home#index'
   get 'home/about' => 'home#about'
+
+  get 'users/:id/follows' => 'relationships#follows'
+  get 'users/:id/followers' => 'relationships#followers'
 end

@@ -8,17 +8,26 @@
             <tr></tr>
             <tr>
     	        <th>name</th>
-    	        <th><%= @user.name %></th>
+    	        <th><%= user.name %></th>
             </tr>
             <tr>
     	        <th>introduction</th>
-              <th><%= @user.introduction %></th>
+              <th><%= user.introduction %></th>
+            </tr>
+            <tr>
+              <th>follows</th>
+              <th><%= link_to user.followings.count, "/users/#{user.id}/follows" %></th>
+            </tr>
+            <tr>
+              <th>followers</th>
+              <th><%= link_to user.followers.count, "/users/#{user.id}/followers"  %></th>
             </tr>
           </tbody>
         </table>
+        <%= render 'relationships/follow_button', user: user %>
         <span class= "row">
-        <% if @user.id == current_user.id %>
-          <p><%= link_to "", edit_user_path(@user),class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user" %></p>
+        <% if user.id == current_user.id %>
+          <p><%= link_to "", edit_user_path(user),class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user" %></p>
         <% end %>
         </span>
 
